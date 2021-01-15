@@ -1,0 +1,8 @@
+<p>sign-in works!</p>
+<!-- <button (click)="openLoginDialog()">Iniciar Sesión</button> -->
+
+<form #loginForm="ngForm" (ngSubmit)="loginUser()">
+  <input type="text" [(ngModel)]="credentials.email" name="email"/>
+  <input type="password" [(ngModel)]="credentials.password" name="password"/>
+  <button type="submit">Iniciar Sesión</button>
+</form>
