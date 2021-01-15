@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
-import { SignInCredentials } from '../components/sign-in/sign-in-credentials.model';
+import { SignInCredentials, SignUpData } from '../components/sign-in/sign-in-credentials.model';
 import { first } from 'rxjs/operators';
 
 export interface ILoginStatus{
@@ -67,9 +67,13 @@ export class AuthService {
   //   return {loggedIn, isAdmin}
   //   // return (localStorage.getItem('user') !== null) ? true : false;
   // }
-  async CreateUser(credentials: any) {
+  async CreateUser(credentials: SignUpData) {
+    console.log(credentials)
     return this.afAuth.createUserWithEmailAndPassword(credentials.email,credentials.password)
       .then(result=>{
+        if(result.user){
+          result.user.updateProfile({displayName:credentials.name})
+        }
         console.log(result)
       }).catch(err=>{
         console.log(err)

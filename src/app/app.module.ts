@@ -14,13 +14,15 @@ import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     ProductsComponent,
-    SignUpComponent
+    SignUpComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

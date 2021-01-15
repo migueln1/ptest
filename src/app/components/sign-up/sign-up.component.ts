@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { SignUpData } from '../sign-in/sign-in-credentials.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,8 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignUpComponent {
   constructor(public authService:AuthService) { }
-  
-  credentials:any
+
+  credentials = new SignUpData('', '', '')
 
   async createUser(): Promise<void> {
     //TODO validar campos

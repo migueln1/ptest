@@ -1,5 +1,6 @@
 <p>sign-up works!</p>
 <form #signupForm="ngForm" (ngSubmit)="createUser()">
+  <input type="text" [(ngModel)]="credentials.name" name="name"/>
   <input type="text" [(ngModel)]="credentials.email" name="email"/>
   <input type="password" [(ngModel)]="credentials.password" name="password"/>
   <button type="submit">Registrar Usuario</button>
