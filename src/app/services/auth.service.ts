@@ -14,27 +14,13 @@ export interface ILoginStatus{
   providedIn: 'root'
 })
 export class AuthService {
+  
   userData: any;
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone
   ) {
-    // this.userLogged.then(async user=>{
-    //   if(user){
-    //     const token = await user.getIdTokenResult()
-    //     const resultUser = JSON.parse(JSON.stringify(user))
-
-    //     if(token.claims.admin){
-    //       resultUser.admin = true; 
-    //     }else{
-    //       resultUser.admin = false;
-    //     }
-    //     this.userData = resultUser
-    //     localStorage.setItem('user', JSON.stringify(this.userData));
-    //   }
-    // })
-    
     this.afAuth.authState.subscribe(user => {
       if(user){
         this.userData = user;
@@ -61,29 +47,35 @@ export class AuthService {
        
   //   }
   // }
-  get isLoggedIn(): ILoginStatus {
-    // const result: ILoginStatus = {loggedIn:false,isAdmin:false}
-    let isAdmin:boolean = false
-    let loggedIn:boolean = false
-    this.userLogged.then(async user => {
-      if(user){
-        loggedIn = true
-        console.log(loggedIn)
-        const token = await user.getIdTokenResult()
-        if(token.claims.admin){
-          isAdmin=true
-        }
-      }
-    }).catch(err=>{
-      window.alert(err)
-    })
-    console.log({loggedIn, isAdmin})
-    return {loggedIn, isAdmin}
-    // return (localStorage.getItem('user') !== null) ? true : false;
-  }
-  // get isAdmin(): boolean {
-  //   this.afAuth.authState.
+  // get isLoggedIn(): ILoginStatus {
+  //   // const result: ILoginStatus = {loggedIn:false,isAdmin:false}
+  //   let isAdmin:boolean = false
+  //   let loggedIn:boolean = false
+  //   this.userLogged.then(async user => {
+  //     if(user){
+  //       loggedIn = true
+  //       console.log(loggedIn)
+  //       const token = await user.getIdTokenResult()
+  //       if(token.claims.admin){
+  //         isAdmin=true
+  //       }
+  //     }
+  //   }).catch(err=>{
+  //     window.alert(err)
+  //   })
+  //   console.log({loggedIn, isAdmin})
+  //   return {loggedIn, isAdmin}
+  //   // return (localStorage.getItem('user') !== null) ? true : false;
   // }
+  async CreateUser(credentials: any) {
+    return this.afAuth.createUserWithEmailAndPassword(credentials.email,credentials.password)
+      .then(result=>{
+        console.log(result)
+      }).catch(err=>{
+        console.log(err)
+      })
+  }
+  
   async AuthLogin(credentials: SignInCredentials) {
     return this.afAuth.signInWithEmailAndPassword(credentials.email,credentials.password)
     .then((result)=>{

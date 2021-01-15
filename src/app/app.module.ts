@@ -12,18 +12,22 @@ import { ProductsComponent } from './components/products/products.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    ProductsComponent
+    ProductsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireFunctionsModule
   ],
   providers: [AuthService, AuthGuard, SecureInnerPagesGuard],
   bootstrap: [AppComponent]

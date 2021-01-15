@@ -17,10 +17,12 @@ export class SecureInnerPagesGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.authService.isLoggedIn.loggedIn) {
-        window.alert("You are already signed in, access denied!");
-        this.router.navigate(['user-profile'])
-      }
+      this.authService.userLogged.then(user=>{
+        if(user!==null){
+          this.router.navigate(['products'])
+        }
+      })
+      
       return true;
     }
   
