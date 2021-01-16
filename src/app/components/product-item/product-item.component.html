@@ -1,3 +1,4 @@
 <img [src]='imageUrl'/>
 <p class="itemTitle">{{productName}}</p>
 <p>{{productPrice}}$</p>
+<button *ngIf="userAdmin" type="button" class="btn-close" aria-label="Close" (click)="removeProduct(id)"></button>

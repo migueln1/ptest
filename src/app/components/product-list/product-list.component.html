@@ -4,7 +4,10 @@
       <app-product-item  
         [productName]='product.productName' 
         [productPrice]='product.productPrice' 
-        [imageUrl]='product.imageUrl'></app-product-item>
+        [imageUrl]='product.imageUrl'
+        [id]='product.id'
+        [userAdmin]='userAdmin'
+        (removeProductEvent)="removeProduct($event)"></app-product-item>
     </div>
   </div>
 </div>

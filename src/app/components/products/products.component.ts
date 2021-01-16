@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { FormControl, FormGroup, RequiredValidator } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 export interface AddProduct {
   productName: string;
@@ -24,6 +26,8 @@ export interface Product {
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+
+  @ViewChild('addProductModal') public addProductModal!:ModalDirective;
   userAdmin: boolean = true;
 
   addProductForm = new FormGroup({
@@ -35,7 +39,6 @@ export class ProductsComponent {
   adminForm = new FormGroup({
     email: new FormControl(''),
   });
-  
   private productsCollection: AngularFirestoreCollection<Product>;
   products: Observable<Product[]>;
   productList: Product[] = [];
@@ -64,15 +67,10 @@ export class ProductsComponent {
     await this.productsCollection.add(product as Product)
     .catch(err=>console.log(err));
   }
-
-  // async removeProduct(product: Product) {
-  //   await this.productsCollection.ref.where().get().subscribe((querySnaoshot)=>{
-
-  //   })
-  //   .doc().delete()
-  //   .then(value=>console.log(value))
-  //   .catch(err=>console.log(err));
-  // }
+  async removeProduct(id:string){
+    await this.productsCollection.doc(id).delete()
+      .catch(err=>console.log(err))
+  }
   
   async submitProduct(){
     const product: AddProduct = {
@@ -80,13 +78,17 @@ export class ProductsComponent {
       productPrice: this.addProductForm.get('productPrice')?.value, 
       imageUrl: this.addProductForm.get('productImage')?.value 
     }
-    await this.addProduct(product).finally(()=>{
-      const modal = document.getElementById("productModal")
-      if (modal) {
-        modal.style.display = "none"
-      }
-      document.getElementsByClassName('modal-backdrop')[0].remove()
-      document.getElementsByTagName('body')[0].classList.remove('modal-open')
+    await this.addProduct(product).then(()=>{
+      // var productModalElem = new bootstrap.Modal(document.getElementById('myModal'), {
+      //   keyboard: false
+      // })
+      this.addProductModal.hide()
+      // const modal = document.getElementById("productModal")
+      // if (modal) {
+      //   modal.style.display = "none"
+      // }
+      // document.getElementsByClassName('modal-backdrop')[0].remove()
+      // document.getElementsByTagName('body')[0].classList.remove('modal-open')
     })
   }
 

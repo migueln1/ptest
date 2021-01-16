@@ -19,6 +19,7 @@ import { NavComponent } from './components/shared/nav/nav.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { CommonModule } from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    ModalModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireFunctionsModule,
   ],

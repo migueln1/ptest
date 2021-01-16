@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-item',
@@ -9,7 +9,15 @@ export class ProductItemComponent {
   @Input() productName: string = '';
   @Input() productPrice: string = '';
   @Input() imageUrl: string = '';
+  @Input() id: string = '';
+  @Input() userAdmin: boolean = false
+
+  @Output() removeProductEvent = new EventEmitter<string>();
+
   constructor() {
-    console.log(this.imageUrl)
+   }
+
+   removeProduct(id: string) {
+     this.removeProductEvent.emit(id);
    }
 }
