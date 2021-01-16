@@ -1,0 +1,16 @@
+app-nav:host{
+  grid-area: userinfo;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#menuNav{
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+  margin-right: 1rem;
+  & li{
+    margin-left: 1rem;
+  }
+}

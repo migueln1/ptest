@@ -1,0 +1,63 @@
+<div class="container-fluid" *ngIf="userAdmin" [ngClass]="{'hiddenControl': !loadedProducts}">
+  <div class="row">
+    <div class="col" id="btnCtnrAdd">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" >
+        Añadir Producto
+      </button>
+    </div>
+  </div>
+</div>
+<app-product-list [products]="productList" (removeProductEventMain)="removeProduct($event)" [userAdmin]="userAdmin"></app-product-list>
+
+<div class="modal fade" bsModal #addProductModal="bs-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productModalLabel">Añadir Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="addProductForm" [formGroup]="addProductForm" (ngSubmit)="submitProduct()">
+      <div class="modal-body">
+        <div class="row">
+            <div class="col">
+              <label for="productName" class="form-label">Producto</label>
+              <input type="text" class="form-control form-control-sm" id="productName" formControlName="productName">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="productPrice" class="form-label">Precio</label>
+              <input type="text" class="form-control form-control-sm" id="productPrice" formControlName="productPrice">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="productImage" class="form-label">URL Imagen de producto</label>
+              <input type="text" class="form-control form-control-sm" id="productImage" formControlName="productImage">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary btn-sm" type="submit">Crear Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" class="adminInput" *ngIf="userAdmin" [ngClass]="{ 'hiddenControl': !loadedProducts}">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="card">
+        <div class="card-body">
+          <form id="adminForm" [formGroup]="adminForm" (ngSubmit)="setUserAsAdmin()">
+            <label for="emailAdress" class="form-label">Introduzca correo electrónico de usuario para convertirlo en administrador</label>
+            <input type="email" class="form-control form-control-sm" id="emailAdress" formControlName="email" placeholder="Correo Electrónico">
+            <button class="btn btn-primary btn-sm" type="submit">Cambiar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
