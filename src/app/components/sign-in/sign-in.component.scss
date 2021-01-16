@@ -1,0 +1,41 @@
+app-sign-in:host{
+  display: grid;
+  grid-template-areas: 'login signup';
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  max-width: 100%;
+}
+.questionText{
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+.dismissText{
+  color: rgba($color: #000000, $alpha: 0.45);
+}
+.boldText{
+  font-weight: 800;
+}
+#loginCtnr{
+  grid-area: login;
+  padding: 1rem 3rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  
+  & form {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    & button{
+      align-self: flex-end;
+      margin-top: 1rem;
+    }
+
+  }
+}
+
+input{
+  max-width: 100%;
+}

@@ -1,0 +1,14 @@
+app-products:host{
+  grid-area: content;
+}
+#btnCtnrAdd{
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 ;
+}
+.hiddenControl{
+  display: none;
+}
+.adminInput{
+  margin: 5rem 0;
+}
