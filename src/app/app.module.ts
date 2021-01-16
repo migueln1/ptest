@@ -16,6 +16,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { UsersComponent } from './components/users/users.component';
 import { NavComponent } from './components/shared/nav/nav.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,12 @@ import { NavComponent } from './components/shared/nav/nav.component';
     ProductsComponent,
     SignUpComponent,
     UsersComponent,
-    NavComponent
+    NavComponent,
+    ProductListComponent,
+    ProductItemComponent
   ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,

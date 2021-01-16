@@ -16,7 +16,8 @@ export class NavComponent {
     this.afAuth.authState.subscribe((user)=>{
       if(user){
         this.userLogged = true;
-        this.name = (user.displayName ?? user.email) ?? 'Usuario'
+        const {displayName, email} = user
+        this.name = (displayName ?? email) ?? 'Usuario'
       }else{
         this.userLogged = false;
         this.name = ''

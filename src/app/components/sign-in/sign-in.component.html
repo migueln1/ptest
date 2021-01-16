@@ -27,6 +27,29 @@
 </div>
 
 <div id="signupCtnr">
-  <p>¿Aún no estás registrado?</p>
-  <p>Registrate</p>
+  <p class="questionText dismissText">¿Aún no estás registrado?</p>
+  <p class="questionText boldText">Registrate</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-8 offset-4" style="padding-right: 0;">
+        <form id="signUpForm" [formGroup]="signUpForm" (ngSubmit)="signupUser()">
+          <div class="col">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control form-control-sm" id="name" formControlName="name">
+          </div>
+          <div class="col">
+            <label for="emailAdress" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control form-control-sm" id="emailAdress" formControlName="email">
+          </div>
+          <div class="col">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control form-control-sm" id="password" formControlName="password">
+          </div>
+          <button class="btn btn-primary btn-sm" type="submit">Registrarse</button>
+          
+        </form>
+      </div>
+    </div>
+
+  </div>
 </div>

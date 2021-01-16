@@ -6,23 +6,23 @@ app-sign-in:host{
   width: 100vw;
   max-width: 100%;
 }
-
+.questionText{
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+.dismissText{
+  color: rgba($color: #000000, $alpha: 0.45);
+}
+.boldText{
+  font-weight: 800;
+}
 #loginCtnr{
   grid-area: login;
   padding: 1rem 3rem;
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
-  & .questionText{
-    font-size: 1.35rem;
-    line-height: 1.2;
-  }
-  & .dismissText{
-    color: rgba($color: #000000, $alpha: 0.45);
-  }
-  & .boldText{
-    font-weight: 800;
-  }
+  
   & form {
     margin-top: 1rem;
     width: 100%;
