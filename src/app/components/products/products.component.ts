@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -8,9 +7,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProductsComponent {
 
-  constructor(public authService: AuthService) { }
+  constructor() { }
 
-  async logOutUser(){
-    await this.authService.SignOut()
-  }
 }

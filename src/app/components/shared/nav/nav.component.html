@@ -1,0 +1,6 @@
+<ul id="menuNav" *ngIf="userLogged">
+  <li><p>{{name}}</p></li>
+  <li>
+    <button class="btn btn-sm btn-primary" (click)="logoutUser()">Cerrar Sesión</button>
+  </li>
+</ul>
